@@ -31,9 +31,9 @@ if [ ! "0" = `grep -i ^Features /proc/cpuinfo | grep -c neon` ]; then
             found_arm="yes"
 fi
 
-if [ ! "0" = `grep -i ^Hardware /proc/cpuinfo | egrep -c -e ODROID-C2 -e sun50iw1p1` ]; then
-            # add ARM neon support on Odroid-C2 (aarch64) boards
-            extracflags="$extracflags -march=armv8-a+fp+simd+crc+lse -mtune=cortex-a53"
+if [ ! "0" = `grep -i ^'CPU architecture' /proc/cpuinfo | egrep -c -e 8` ]; then
+            # add ARM neon support on (aarch64) boards
+            extracflags="$extracflags -march=armv8-a+fp+simd+crc+lse -mtune=cortex-a57"
 	    found_arm="yes"
 fi
 
